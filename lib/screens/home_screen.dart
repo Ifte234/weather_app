@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/global_controller.dart';
+import '../widgets/header.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -18,8 +19,12 @@ class HomeScreen extends StatelessWidget {
         child: Obx(() {
          return  globalController.checkLoading().isTrue ? Center(
            child: CircularProgressIndicator(),
-         ) : Container(
-           child: Text('Test')
+         )
+             :ListView(
+           scrollDirection: Axis.vertical,
+           children: [
+             HeaderWidget()
+           ],
          );
         }),
         
