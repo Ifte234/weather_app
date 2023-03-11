@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controller/global_controller.dart';
 class HeaderWidget extends StatefulWidget {
@@ -12,6 +13,7 @@ class HeaderWidget extends StatefulWidget {
 
 class _HeaderWidgetState extends State<HeaderWidget> {
   String city = '';
+  String now = DateFormat('yMMMMd').format(DateTime.now());
   //caalling global controllers
   final GlobalController globalController = Get.put(GlobalController() , permanent: true);
   @override
@@ -30,8 +32,25 @@ class _HeaderWidgetState extends State<HeaderWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(city),
+    return Column(
+      children: [Container(
+    margin: EdgeInsets.only(left: 20 , right: 20),
+    alignment: Alignment.topLeft,
+    child: Text('City'+ city,style: TextStyle(
+    fontSize: 35,
+      height: 1.6
+    ),),
+    ),
+    Container(
+    margin: EdgeInsets.only(left: 20 , right: 20, bottom: 20),
+    alignment: Alignment.topLeft,
+    child: Text(now,style: TextStyle(
+    fontSize: 15,
+      color: Colors.grey[700], height: 1.5
+    ),),
+    )
+      ]
     );
+
   }
 }
