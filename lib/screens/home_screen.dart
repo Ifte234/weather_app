@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../controller/global_controller.dart';
+
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+   HomeScreen({Key? key}) : super(key: key);
 
+  //caalling global controllers
+  final GlobalController globalController = Get.put(GlobalController() , permanent: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
+      body: SafeArea(
+        
+        child: Obx(() {
+         return  globalController.checkLoading().isTrue ? Center(
+           child: CircularProgressIndicator(),
+         ) : Container(
+           child: Text('Test')
+         );
+        }),
+        
+      ),
     );
   }
 }
